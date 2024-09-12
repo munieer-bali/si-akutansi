@@ -69,7 +69,7 @@
                                 <td><?= $nilai['item_description'] ?></td>
                                 <td><?= $nilai['transaksi_date'] ?></td>
                                 <td><?= $nilai['customer_id'] ?></td>
-                                <td><?= $nilai['item_price'] ?></td>
+                                <td><?= format_rupiah($nilai['item_price'])?></td>
                                 <td><?= $nilai['item_stock'] ?></td>
 
                                 <td class="text-center" style="width: 15%;">

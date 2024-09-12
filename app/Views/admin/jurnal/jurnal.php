@@ -65,7 +65,7 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $nilai->nama ?></td>
                                 <td><?= $nilai->tipe_transaksi ?></td>
-                                <td>Rp.<?= $nilai->jumlah ?></td>
+                                <td><?= format_rupiah($nilai->jumlah) ?></td>
                                 <td><?= $nilai->tanggal ?></td>
 
                                 <td class="text-center" style="width: 15%;">

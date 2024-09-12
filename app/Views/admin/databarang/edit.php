@@ -27,7 +27,6 @@
                             <label for="exampleInputEmail1">Nama barang</label>
                             <input type="Text" class="form-control" name="nama_barang" value="<?= $edit->nama_barang ?>">
                         </div>
-
                         <div class="form-group">
                             <label for="exampleInputEmail1">Jumlah Barang</label>
                             <input type="text" class="form-control" name="jumlah_barang" value="<?= $edit->jumlah_barang ?>">

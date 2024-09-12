@@ -55,12 +55,5 @@ class TransaksiDetailModel extends Model
         return $query;
     }
 
-    // Method untuk melakukan query join yang kompleks
-    // public function getComplexData()
-    // {
-    //     return $this->select('transaksi_detail_barang.*, item.item_name, item.item_description, item.item_price, transaksi_barang.transaksi_date, transaksi_barang.customer_id, transaksi_barang.total_price')
-    //         ->join('item', 'item.item_id = transaksi_detail_barang.item_id')
-    //         ->join('transaksi_barang', 'transaksi_barang.transaksi_id = transaksi_detail_barang.transaksi_id')
-    //         ->findAll();
-    // }
+   
 }

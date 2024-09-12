@@ -69,12 +69,12 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $nilai->nama ?></td>
                                 <td><?= $nilai->keterangan ?></td>
-                                <td>Rp.<?= $nilai->pendapatan_usaha ?></td>
-                                <td>Rp.<?= $nilai->beban_operasional ?></td>
-                                <td>Rp.<?= $nilai->pendapatan_lain ?></td>
-                                <td>Rp.<?= $nilai->beban_lain ?></td>
-                                <td>Rp.<?= $nilai->laba_kotor ?></td>
-                                <td>Rp.<?= $nilai->laba_bersih ?></td>
+                                <td><?= format_rupiah($nilai->pendapatan_usaha)  ?></td>
+                                <td><?= format_rupiah($nilai->beban_operasional) ?></td>
+                                <td><?= format_rupiah($nilai->pendapatan_lain) ?></td>
+                                <td><?= format_rupiah($nilai->beban_lain) ?></td>
+                                <td><?= format_rupiah($nilai->laba_kotor) ?></td>
+                                <td><?= format_rupiah($nilai->laba_bersih) ?></td>
 
                                 <td class="text-center" style="width: 10%;">
                                     <a href="<?= base_url('admin/labarugi/edit/' . $nilai->id_laba) ?>" class="btn btn-warning btn-sm">

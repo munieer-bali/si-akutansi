@@ -32,8 +32,16 @@
                         <input type="text" class="form-control" name="item_description" value="<?= $edit->item_description ?>">
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Tanggal Transaksi</label>
+                        <input type="date" class="form-control" name="transaksi_date" placeholder="input">
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Harga Item</label>
                         <input type="text" class="form-control" name="item_price" value="<?= $edit->item_price ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Kode Barang</label>
+                        <input type="text" class="form-control" name="customer_id" placeholder="input">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Stock Barang</label>

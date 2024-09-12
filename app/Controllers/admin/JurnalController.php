@@ -6,7 +6,7 @@ namespace App\Controllers\admin;
 use App\Controllers\BaseController;
 use App\Models\JurnalModel;
 use App\Models\AkunModel;
-use CodeIgniter\HTTP\ResponseInterface;
+
 
 class JurnalController extends BaseController
 {

@@ -36,22 +36,30 @@ class Transaksidetail extends BaseController
     public function save()
     {
         $detail = new TransaksiDetailModel();
-        $data = $detail->getAll();
+        $itemModel = new ItemModel();
+
         if ($this->request->getMethod() === 'post') {
+            $item_id = $this->request->getPost('item_id');
+            $quantity = $this->request->getPost('quantity');
             $data = [
-                'item_id' => $this->request->getPost('item_id'),
+                'item_id' => $item_id,
                 'transaksi_date' => $this->request->getPost('transaksi_date'),
                 'kode_pelanggan' => $this->request->getPost('kode_pelanggan'),
-                'quantity' => $this->request->getPost('quantity'),
+                'quantity' => $quantity,
                 'price_per_item' => $this->request->getPost('price_per_item'),
-
-
-
-
             ];
+
+            // Simpan transaksi detail
             $detail->insert($data);
 
-            return redirect()->to(base_url('admin/transaksidetail/index'))->with('success', 'data berhasil disimpan');
+            // Kurangi stok barang
+            $isStockReduced = $itemModel->reduceStock($item_id, $quantity);
+
+            if (!$isStockReduced) {
+                return redirect()->back()->with('error', 'Stok barang tidak mencukupi');
+            }
+
+            return redirect()->to(base_url('admin/transaksidetail/index'))->with('success', 'Data berhasil disimpan dan stok barang berkurang');
         }
     }
 

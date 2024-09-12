@@ -85,7 +85,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3><?= $jumlah_data_transaksi ?><sup style="font-size: 20px"></sup></h3>
+                                <h3><?= $jumlah_data_transaksi?></h3>
 
                                 <p>Jurnal Umum</p>
                             </div>

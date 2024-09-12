@@ -66,9 +66,9 @@
                 <td><?= $no++ ?></td>
                 <td><?= $nilai->nama ?></td>
                 <td><?= $nilai->tanggal ?></td>
-                <td>Rp.<?= $nilai->total_aset ?></td>
-                <td>Rp.<?= $nilai->total_kewajiban ?></td>
-                <td>Rp.<?= $nilai->ekuitas_bersih ?></td>
+                <td><?= format_rupiah($nilai->total_aset) ?></td>
+                <td><?= format_rupiah($nilai->total_kewajiban) ?></td>
+                <td><?= format_rupiah($nilai->ekuitas_bersih) ?></td>
 
                 <td class="text-center" style="width: 15%;">
                   <a href="<?= base_url('admin/Neraca/edit/' . $nilai->id_neraca) ?>" class="btn btn-warning btn-sm">

@@ -72,10 +72,10 @@
                                     <td><?= $row->item_description ?></td>
                                     <td><?= $row->kode_pelanggan ?></td>
                                     <td><?= $row->transaksi_date ?></td>
-                                    <td><?= $row->item_price ?></td>
+                                    <td><?=format_rupiah($row->item_price) ?></td>
                                     <td><?= $row->quantity ?></td>
-                                    <td><?= $row->price_per_item ?></td>
-                                    <td><?= $row->subtotal ?></td>
+                                    <td><?= format_rupiah($row->price_per_item) ?></td>
+                                    <td><?= format_rupiah($row->subtotal) ?></td>
 
 
                                     <td class="text-center" style="width: 15%;">

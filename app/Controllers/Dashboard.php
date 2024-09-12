@@ -4,15 +4,14 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\BukubesarModel;
-use App\Models\Model1;
-use App\Models\Model2;
-use App\Models\Model3;
-use App\Models\Model4;
-use App\Models\Model5;
-use App\Models\Model6;
-use App\Models\Model7;
-
-
+use App\Models\akunDashboard;
+use App\Models\barangDashboard;
+use App\Models\detailDashboard;
+use App\Models\itemDashboard;
+use App\Models\labaDashboard;
+use App\Models\neracaDashboard;
+use App\Models\transaksiDasboard;
+use App\Models\transaksiDashboard;
 
 class Dashboard extends BaseController
 {
@@ -26,13 +25,13 @@ class Dashboard extends BaseController
         $data['total_saldo'] = $data['saldo_akun']['total_saldo'];
 
         //untuk menampilkan jumlah keseluruhan
-        $modelTabel1 = new Model1();
-        $modelTabel2 = new Model2();
-        $modelTabel3 = new Model3();
-        $modelTabel4 = new Model4();
-        $modelTabel5 = new Model5();
-        $modelTabel6 = new Model6();
-        $modelTabel7 = new Model7();
+        $modelTabel1 = new akunDashboard();
+        $modelTabel2 = new barangDashboard();
+        $modelTabel3 = new labaDashboard();
+        $modelTabel4 = new neracaDashboard();
+        $modelTabel5 = new transaksiDashboard();
+        $modelTabel6 = new itemDashboard();
+        $modelTabel7 = new detailDashboard();
 
 
         $data['jumlah_data_akun'] = $modelTabel1->countAll(); // Sesuaikan dengan model dan tabel Anda

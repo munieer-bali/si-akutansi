@@ -25,7 +25,7 @@
                         <select class="form-control" aria-label="Default select example" name="item_id">
                             <?php foreach ($data as $key) : ?>
 
-                                <option value="<?= $key->item_id ?>"><?= $key->item_name ?> - <?= $key->item_description ?> - <?= $key->customer_id ?></option>
+                                <option value="<?= $key->item_id ?>"><?= $key->item_name ?> - <?= $key->item_description ?> - <?= $key->customer_id ?> - <?= $key->item_price ?></option>
 
                             <?php endforeach ?>
                         </select>

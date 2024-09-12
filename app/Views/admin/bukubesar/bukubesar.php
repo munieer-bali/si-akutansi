@@ -65,14 +65,14 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= isset($row['nama']) ? $row['nama'] : 'N/A' ?></td>
                                 <td><?= $row['tipe_transaksi'] ?></td>
-                                <td>Rp.<?= $row['jumlah'] ?></td>
+                                <td><?= format_rupiah($row['jumlah']) ?></td>
                                 <td><?= $row['tanggal'] ?></td>
                                 <td><?= isset($saldo_akun[$row['id_akun']]) ? $saldo_akun[$row['id_akun']] : 'N/A' ?></td>
                             </tr>
                         <?php endforeach; ?>
                         <tr>
                             <td id="myTable" class="table table-bordered table-striped" colspan="5">Total Saldo Keseluruhan</td>
-                            <td>Rp.<?= $total_saldo ?></td>
+                            <td><?= format_rupiah($total_saldo)  ?></td>
                         </tr>
                     </tbody>
 

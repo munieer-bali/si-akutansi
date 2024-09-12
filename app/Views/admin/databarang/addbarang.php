@@ -22,16 +22,31 @@
                     <?= csrf_field() ?>
 
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nama barang</label>
-                        <input type="Text" class="form-control" name="nama_barang" placeholder="Enter nama">
-                    </div>  
+                        <label for="exampleInputEmail1">kode Barang</label>
+                        <select class="form-control" aria-label="Default select example" name="item_id">
+                            <?php foreach ($data as $key) : ?>
 
+                                <option value="<?= $key->item_id ?>"><?= $key->item_name ?> - <?= $key->customer_id ?></option>
+
+                            <?php endforeach ?>
+                        </select> 
+                    </div>  
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nama Barang</label>
+                        <select class="form-control" aria-label="Default select example" name="nama_barang">
+                            <?php foreach ($data as $key) : ?>
+
+                                <option value="<?= $key->item_id ?>"><?= $key->item_name ?></option>
+
+                            <?php endforeach ?>
+                        </select> 
+                    </div>  
                     <div class="form-group">
                         <label for="exampleInputEmail1">Jumlah Barang</label>
-                        <input type="text" class="form-control" name="jumlah_barang" placeholder="input">
+                        <input type="number" min="1" class="form-control" name="jumlah_barang" placeholder="input">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Tanggal</label>
+                        <label for="exampleInputEmail1">Tanggal Masuk</label>
                         <input type="Date" class="form-control" name="tanggal" placeholder="input">
                     </div>
                     <div class="form-group">

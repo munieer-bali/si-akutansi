@@ -240,6 +240,6 @@ class SeederBarangGudang extends Seeder
         // $this->db->query('INSERT INTO users (username, email) VALUES(:username:, :email:)', $data);
 
         // Using Query Builder
-        $this->db->table('barang')->insertBatch($data);
+        $this->db->table('barang_gudang')->insertBatch($data);
     }
 }

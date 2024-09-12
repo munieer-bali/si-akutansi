@@ -48,9 +48,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Kode Barang</th>
                             <th>Nama Barang</th>
                             <th>Jumlah Barang</th>
-                            <th>Tanggal</th>
+                            <th>Tanggal Masuk</th>
                             <th>Harga Beli</th>
                             <th>Harga jual</th>
                             <th>Aksi</th>
@@ -63,20 +64,21 @@
                         <?php
                         $no = 1;
 
-                        foreach ($barang as $key => $nilai) : ?>
+                        foreach ($barang as $nilai) : ?>
                             <tr>
                                 <td><?= $no++ ?></td>
-                                <td><?= $nilai['nama_barang'] ?></td>
-                                <td><?= $nilai['jumlah_barang'] ?></td>
-                                <td><?= $nilai['tanggal'] ?></td>
-                                <td><?= $nilai['harga_beli'] ?></td>
-                                <td><?= $nilai['harga_jual'] ?></td>
+                                <td><?= $nilai->customer_id; ?></td> 
+                                <td><?= $nilai->item_name; ?></td> 
+                                <td><?= $nilai->jumlah_barang;?></td>
+                                <td><?= $nilai->tanggal; ?></td>
+                                <td><?= format_rupiah($nilai->harga_beli)?></td>
+                                <td><?= format_rupiah($nilai->harga_jual)?></td>
 
                                 <td class="text-center" style="width: 15%;">
-                                    <a href="<?= base_url('admin/databarang/edit/' . $nilai['id_barang']) ?>" class="btn btn-warning btn-sm">
+                                    <a href="<?= base_url('admin/databarang/edit/' . $nilai->id_barang) ?>" class="btn btn-warning btn-sm">
                                         <i class="fas fa-pencil-alt btn-small"></i> Edit
                                     </a>
-                                    <a href="<?= base_url('admin/databarang/delete/' . $nilai['id_barang']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus id_barang <?= $nilai['id_barang'] ?>')">
+                                    <a href="<?= base_url('admin/databarang/delete/' . $nilai->id_barang) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus id_barang <?= $nilai->id_barang ?>')">
                                         <i class="fas fa-trash btn-small"></i> Del
                                     </a>
                                 </td>

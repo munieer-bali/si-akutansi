@@ -55,7 +55,7 @@ class Labarugi extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addForeignKey('id_akun', 'transaksi', 'id_akun', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_akun', 'akun', 'id_akun', 'CASCADE', 'CASCADE');
         $this->forge->addKey('id_laba', true);
         $this->forge->createTable('labarugi');
     }
