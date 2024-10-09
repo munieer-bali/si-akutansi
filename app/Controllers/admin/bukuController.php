@@ -21,6 +21,6 @@ class bukuController extends BaseController
         // Mengambil total saldo keseluruhan dari hasil penghitungan di model
         $data['total_saldo'] = $data['saldo_akun']['total_saldo'];
         // Kirim data ke view
-        return view('admin/bukubesar/bukubesar', $data);
+        return view('admin/bukubesar/bukubesar', $data); 
     }
 }

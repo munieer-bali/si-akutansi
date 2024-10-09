@@ -16,45 +16,64 @@ class JurnalModel extends Model
     public function getJurnalData()
     {
         $builder = $this->db->table('transaksi');
-        $builder->join('akun', 'akun.id_akun = transaksi.id_akun');
+        $builder->join('akun', 'akun.id_akun = transaksi.id_akun'); 
         $query = $builder->get();
         return $query->getResult();
     }
 
-    // function getAll()
-    // {
-    //     $builder = $this->db->table('transaksi');
+    public function getTransaksi()
+    {
+        // Menggunakan join untuk menggabungkan tabel 'akun' dan 'transaksi'
+        return $this->select('transaksi.*, akun.nama')
+            ->join('akun', 'akun.id_akun = transaksi.id_akun')
+            ->findAll();
+    }
 
-    //     // Melakukan JOIN dengan tabel 'akun' berdasarkan kolom 'id_akun'
-    //     $builder->join('akun', 'akun.id_akun = transaksi.id_akun');
+    // Menghitung saldo akun berdasarkan debit dan kredit
+    public function getSaldoAkun()
+    {
+        // Mengambil semua data transaksi
+        $transaksi = $this->getTransaksi();
+        $saldo_akun = []; // Untuk menyimpan saldo tiap akun
+        $total_saldo = 0; // Untuk menghitung total saldo seluruh akun
 
-    //     // Menentukan kolom-kolom yang ingin Anda ambil
-    //     $builder->select('akun.id_akun, akun.nama');
+        // Looping setiap transaksi
+        foreach ($transaksi as $row) {
+            $id_akun = $row['id_akun']; // Mengambil id akun dari transaksi
+            $jumlah = $row['jumlah']; // Mengambil jumlah transaksi
+            $tipe_transaksi = $row['tipe_transaksi']; // Mengambil tipe transaksi (debit/kredit)
 
-    //     // Eksekusi query dan ambil hasilnya
-    //     $query = $builder->get();
-    //     return $query->getResult();
-    // }
+            // Jika tipe transaksi adalah debit, maka jumlahnya dianggap pengeluaran (-)
+            if ($tipe_transaksi == 'debet') {
+                $jumlah = -$jumlah;
+            }
 
-    // function validateJurnalUmum($id_transaksi, $tipe_transaksi, $jumlah)
-    // {
-    //     if (!in_array($tipe_transaksi, ['debit', 'kredit'])) {
-    //         return false; // Validasi gagal jika tipe transaksi tidak valid
-    //     }
+            // Memasukkan jumlah transaksi ke saldo akun yang bersangkutan
+            if (!isset($saldo_akun[$id_akun])) {
+                $saldo_akun[$id_akun] = $jumlah;
+            } else {
+                $saldo_akun[$id_akun] += $jumlah;
+            }
 
-    //     // Validasi debit dan kredit sesuai aturan bisnis
-    //     if (($tipe_transaksi == 'debit' && $jumlah <= 0) || ($tipe_transaksi == 'kredit' && $jumlah >= 0)) {
-    //         return false; // Validasi gagal jika jumlah tidak sesuai dengan tipe transaksi
-    //     }
+            // Menambahkan ke total saldo semua akun
+            $total_saldo += $jumlah;
+        }
 
-    //     // Cek apakah total debit dan kredit seimbang
-    //     $totalDebit = $this->where('id_transaksi', $id_transaksi)->where('tipe_transaksi', 'debit')->selectSum('jumlah')->get()->getRow()->jumlah;
-    //     $totalKredit = $this->where('id_transaksi', $id_transaksi)->where('tipe_transaksi', 'kredit')->selectSum('jumlah')->get()->getRow()->jumlah;
+        // Mengembalikan saldo per akun dan total saldo
+        return ['saldo_akun' => $saldo_akun, 'total_saldo' => $total_saldo];
+    }
 
-    //     if ($totalDebit != $totalKredit) {
-    //         return false; // Validasi gagal jika total debit dan kredit tidak seimbang
-    //     }
+    public function getJurnalDataByTanggal($tanggal_awal, $tanggal_akhir)
+    {
+        $builder = $this->db->table('transaksi');
+        $builder->join('akun', 'akun.id_akun = transaksi.id_akun');
+        
+        // Menggunakan filter tanggal dalam query
+        $builder->where('transaksi.tanggal >=', $tanggal_awal);
+        $builder->where('transaksi.tanggal <=', $tanggal_akhir);
+        
+        $query = $builder->get();
+        return $query->getResult();
+    }
 
-    //     return true; // Jika validasi sukses
-    // }
 }

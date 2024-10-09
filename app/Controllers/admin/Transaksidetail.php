@@ -5,31 +5,61 @@ namespace App\Controllers\admin;
 use App\Controllers\BaseController;
 use App\Models\TransaksiDetailModel;
 use App\Models\ItemModel;
-use PhpParser\Node\Expr\FuncCall;
 
 class Transaksidetail extends BaseController
 {
-
-
     public function index()
     {
-        // Membuat instance dari model TransactionDetailModel
         $transaksiDetailModel = new TransaksiDetailModel();
 
-        // Mengambil data menggunakan fungsi getAll dari model
-        $data = $transaksiDetailModel->getAll();
+        // Ambil tanggal awal dan tanggal akhir dari query string
+        $tanggal_awal = $this->request->getVar('tanggal_awal');
+        $tanggal_akhir = $this->request->getVar('tanggal_akhir');
+
+        // Cek apakah ada filter tanggal
+        if ($tanggal_awal && $tanggal_akhir) {
+            // Jika ada, gunakan filter berdasarkan tanggal
+            $dataTransaksi['data'] = $transaksiDetailModel->getJurnalDataByTanggal($tanggal_awal, $tanggal_akhir);
+        } else {
+            // Jika tidak ada filter, ambil semua data
+            $dataTransaksi = $transaksiDetailModel->getAll();
+        }
+
+        // Inisialisasi variabel untuk total pendapatan, laba kotor, dan laba bersih
+        $totalPendapatan = 0;
+        $totalLabaKotor = 0;
+        $totalLabaBersih = 0;
+
+      // Lakukan iterasi untuk menghitung total pendapatan, laba kotor, dan laba bersih
+        foreach ($dataTransaksi['data'] as $transaksi) {
+            $totalPendapatan += $transaksi->subtotal;  // Mengakses data sebagai array
+            $totalLabaKotor += $transaksi->subtotal - ($transaksi->quantity * $transaksi->item_price);
+        }
+
+        // Asumsikan biaya operasional sebagai persentase dari laba kotor, misalnya 20%
+        $biayaOperasional = 0.2 * $totalLabaKotor;
+        $totalLabaBersih = $totalLabaKotor - $biayaOperasional; // Laba Bersih
+
+        // Data yang akan dikirim ke view
+        $data = [
+            'data' => $dataTransaksi['data'],
+            'total_subtotal' => $totalPendapatan,
+            'labaKotor' => $totalLabaKotor,
+            'labaBersih' => $totalLabaBersih
+        ];
+        // var_dump($dataTransaksi);
 
         return view('admin/transaksidetail/index', $data);
     }
 
     public function add()
-
     {
-        $builder = new ItemModel();
+        $itemModel = new ItemModel();
 
-        // Mengambil data akun dari tabel akun
-        $query = $builder->get();
-        $data['data'] = $query->getResult();
+        // Mengambil data item dari tabel item
+        $query = $itemModel->findAll();
+        $data['data'] = $query;
+
         return view('admin/transaksidetail/add', $data);
     }
 
@@ -50,16 +80,18 @@ class Transaksidetail extends BaseController
             ];
 
             // Simpan transaksi detail
-            $detail->insert($data);
+            if ($detail->insert($data)) {
+                // Kurangi stok barang
+                $isStockReduced = $itemModel->reduceStock($item_id, $quantity);
 
-            // Kurangi stok barang
-            $isStockReduced = $itemModel->reduceStock($item_id, $quantity);
+                if (!$isStockReduced) {
+                    return redirect()->back()->with('error', 'Stok barang tidak mencukupi');
+                }
 
-            if (!$isStockReduced) {
-                return redirect()->back()->with('error', 'Stok barang tidak mencukupi');
+                return redirect()->to(base_url('admin/transaksidetail/index'))->with('success', 'Data berhasil disimpan dan stok barang berkurang');
+            } else {
+                return redirect()->back()->with('error', 'Gagal menyimpan data transaksi.');
             }
-
-            return redirect()->to(base_url('admin/transaksidetail/index'))->with('success', 'Data berhasil disimpan dan stok barang berkurang');
         }
     }
 
@@ -73,6 +105,7 @@ class Transaksidetail extends BaseController
 
         return view('admin/transaksidetail/edit', $data);
     }
+    
 
     public function update()
     {
@@ -84,19 +117,25 @@ class Transaksidetail extends BaseController
             'kode_pelanggan' => $this->request->getPost('kode_pelanggan'),
             'quantity' => $this->request->getPost('quantity'),
             'price_per_item' => $this->request->getPost('price_per_item'),
-
         ];
-        $model->where('transaksi_detail_id', $id)->set($data)->update();
-        return redirect()->to(base_url('admin/transaksidetail/index'))->with('success', 'Data berhasil diupdate');
+
+        // Update data transaksi detail
+        if ($model->update($id, $data)) {
+            return redirect()->to(base_url('admin/transaksidetail/index'))->with('success', 'Data berhasil diupdate');
+        } else {
+            return redirect()->back()->with('error', 'Gagal mengupdate data transaksi.');
+        }
     }
+
     public function delete($id)
     {
         $model = new TransaksiDetailModel();
 
-        $query = $model->table('tabel_transaksi_detail_barang');
-        $hasil = $query->where('transaksi_detail_id', $id);
-        $hasil->delete();
-
-        return redirect()->to('admin/transaksidetail/index');
+        // Hapus data transaksi berdasarkan id
+        if ($model->delete($id)) {
+            return redirect()->to('admin/transaksidetail/index')->with('success', 'Data berhasil dihapus');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menghapus data transaksi.');
+        }
     }
 }

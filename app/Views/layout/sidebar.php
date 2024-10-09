@@ -138,13 +138,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('admin/bukubesar/bukubesar') ?>" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>Buku Besar</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
                             <a href="<?= base_url('admin/Neraca/neraca') ?>" class="nav-link">
                                 <i class="nav-icon  ion ion-pie-graph"></i>
                                 <p>Neraca</p>

@@ -73,6 +73,7 @@
                         <tr>
                             <td id="myTable" class="table table-bordered table-striped" colspan="5">Total Saldo Keseluruhan</td>
                             <td><?= format_rupiah($total_saldo)  ?></td>
+                            
                         </tr>
                     </tbody>
 

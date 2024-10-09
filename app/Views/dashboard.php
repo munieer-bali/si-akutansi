@@ -26,7 +26,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-6 col-6">
+                <div class="col-lg-12 col-12">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -40,27 +40,6 @@
                         <a href="<?= base_url('admin/databarang/barang') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <!-- ./col -->
-
-                <!-- ./col -->
-                <div class="col-lg-6 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>Rp.<?= $total_saldo ?></h3>
-
-                            <p>Buku Besar</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <a href="<?= base_url('admin/bukubesar/bukubesar') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-            </div>
-            <!-- /.row -->
-            <!-- Info boxes -->
 
             <!-- /.col -->
             <div class="container-fluid">

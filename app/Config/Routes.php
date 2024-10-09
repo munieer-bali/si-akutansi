@@ -40,7 +40,7 @@ $routes->post('admin/jurnal/update', 'admin\JurnalController::update');
 
 
 //buku besar
-$routes->get('admin/bukubesar/bukubesar', 'admin\bukuController::BukuBesar');
+// $routes->get('admin/bukubesar/bukubesar', 'admin\bukuController::BukuBesar');
 
 //neraca
 $routes->get('admin/Neraca/neraca', 'admin\NeracaController::viewNeraca');

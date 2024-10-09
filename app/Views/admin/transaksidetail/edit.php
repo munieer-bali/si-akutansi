@@ -21,7 +21,7 @@
                 <form method="post" action="<?= base_url('admin/transaksidetail/update') ?>">
                     <?= csrf_field() ?>
                     <div class="form-group">
-                        <input type="hidden" class="form-control" name="transaksi_detail_id" value="<?= $edit->transaksi_detail_id ?>">
+                        <input type="hidden" class="form-control" name="transaksi_detail_id" value="<?= $edit->transaksi_detail_id?>">
                         <label for="exampleInputEmail1">Akun</label>
                         <select class="form-control" aria-label="Default select example" name="item_id" value="<?= $edit->item_id ?>">
                             <?php foreach ($data as $key) : ?>

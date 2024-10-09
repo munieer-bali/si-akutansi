@@ -18,11 +18,11 @@ class Dashboard extends BaseController
 
     public function index()
     {
-        $bukuBesarModel = new  BukubesarModel();
+        // $bukuBesarModel = new  BukubesarModel();
 
-        $data['saldo_akun'] = $bukuBesarModel->getSaldoAkun();
-        // Mengambil total saldo keseluruhan dari hasil penghitungan di model
-        $data['total_saldo'] = $data['saldo_akun']['total_saldo'];
+        // $data['saldo_akun'] = $bukuBesarModel->getSaldoAkun();
+        // // Mengambil total saldo keseluruhan dari hasil penghitungan di model
+        // $data['total_saldo'] = $data['saldo_akun']['total_saldo'];
 
         //untuk menampilkan jumlah keseluruhan
         $modelTabel1 = new akunDashboard();
