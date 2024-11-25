@@ -6,49 +6,54 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>edit Akun</h1>
+                    <h1>Edit Akun</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('/dahboard') ?>">Home</a></li>
-                        <li class="breadcrumb-item active">Edit Akun 1</li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
+                        <li class="breadcrumb-item active">Edit Akun</li>
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
-        <div class="card">
-
-
-            <div class="card-body">
-                <form method="post" action="<?= base_url('admin/KodeAkun/update-akun') ?>">
-                    <?= csrf_field() ?>
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" name="id_akun" value="<?= $edit->id_akun ?>">
-                        <label for="exampleInputEmail1">Kode Akun</label>
-                        <input type="text" class="form-control" name="kode" placeholder="Enter Kode" value="<?= $edit->kode ?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Nama Akun</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Enter nama" value="<?= $edit->nama ?>">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i>upadate</button>
-                        <button type="reset" class="btn btn-secondary"><i class="fas fa-trash"></i>reset</button>
-                    </div>
-                </form>
-
-            </div>
-            <!-- /.card-body -->
         </div>
-        <!-- /.card -->
+    </section>
+
+    <!-- Card for Edit Akun -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="<?= base_url('admin/KodeAkun/update-akun') ?>">
+                        <?= csrf_field() ?>
+                        
+                        <!-- Hidden input for ID Akun -->
+                        <input type="hidden" class="form-control" name="id_akun" value="<?= $edit->id_akun ?>">
+
+                        <!-- Kode Akun Input -->
+                        <div class="form-group">
+                            <label for="kodeAkun">Kode Akun</label>
+                            <input type="text" class="form-control" id="kodeAkun" name="kode" placeholder="Masukkan Kode Akun" value="<?= $edit->kode ?>" required>
+                        </div>
+
+                        <!-- Nama Akun Input -->
+                        <div class="form-group">
+                            <label for="namaAkun">Nama Akun</label>
+                            <input type="text" class="form-control" id="namaAkun" name="nama" placeholder="Masukkan Nama Akun" value="<?= $edit->nama ?>" required>
+                        </div>
+
+                        <!-- Submit and Reset Buttons -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-paper-plane"></i> Update
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-trash-alt"></i> Reset
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-<!-- /.col -->
-
-</section>
-
-
-</section>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
 <?= $this->endSection() ?>

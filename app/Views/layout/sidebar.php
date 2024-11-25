@@ -5,14 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SI-Akutansi</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-    <!-- Tempusdominus Bbootstrap 4 -->
+    <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
@@ -20,11 +19,11 @@
     <link rel="stylesheet" href="/plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
+    <!-- OverlayScrollbars -->
     <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
+    <!-- Summernote -->
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -64,12 +63,6 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <!-- <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
-            </li> -->
             </ul>
 
             <!-- SEARCH FORM -->
@@ -86,14 +79,12 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="<?= base_url('/logout') ?>" class="dropdown-item">logout
-                        </a>
+                        <a href="<?= base_url('/logout') ?>" class="dropdown-item">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -110,62 +101,64 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                    with font-awesome or any other icon font library -->
+                        <!-- Dashboard -->
                         <li class="nav-item has-treeview menu-open">
                             <a href="<?= base_url('/dashboard') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p> Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview ">
+                        <!-- Data Akuntansi -->
+                        <li class="nav-item">
                             <a href="<?= base_url('admin/KodeAkun/akun') ?>" class="nav-link">
-                                <i class="far fa-user nav-icon"></i>
+                                <i class="nav-icon fas fa-book"></i>
                                 <p>Data Akuntansi</p>
                             </a>
-                            </a>
                         </li>
-                        </li>
+                        <!-- Jurnal Umum -->
                         <li class="nav-header">Activity</li>
-                        <li class="nav-item treeview">
+                        <li class="nav-item">
                             <a href="<?= base_url('admin/jurnal/jurnal') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>Jurnal Umum</p>
                             </a>
                         </li>
+                        <!-- Neraca -->
                         <li class="nav-item">
                             <a href="<?= base_url('admin/Neraca/neraca') ?>" class="nav-link">
-                                <i class="nav-icon  ion ion-pie-graph"></i>
+                                <i class="nav-icon fas fa-balance-scale"></i>
                                 <p>Neraca</p>
                             </a>
                         </li>
+                        <!-- Laba Rugi -->
                         <li class="nav-item">
                             <a href="<?= base_url('admin/labarugi/laba') ?>" class="nav-link">
-                                <i class="nav-icon ion ion-stats-bars"></i>
+                                <i class="nav-icon fas fa-money-bill-wave"></i>
                                 <p>Laba Rugi</p>
                             </a>
                         </li>
-
+                        <!-- Data Barang Gudang -->
                         <li class="nav-item">
                             <a href="<?= base_url('admin/databarang/barang') ?>" class="nav-link">
-                                <i class="nav-icon  ion ion-bag"></i>
-                                <p>Data barang gudang</p>
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Data Barang Gudang</p>
                             </a>
                         </li>
                         <li class="nav-header">Transaksi</li>
+                        <!-- Data Item Satuan -->
                         <li class="nav-item">
                             <a href="<?= base_url('admin/item/item') ?>" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
+                                <i class="nav-icon fas fa-tags"></i>
                                 <p>Data Item Satuan</p>
                             </a>
                         </li>
+                        <!-- Transaksi Detail Barang -->
                         <li class="nav-item">
                             <a href="<?= base_url('admin/transaksidetail/index') ?>" class="nav-link">
-                                <i class="nav-icon  ion ion-bag"></i>
+                                <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>Transaksi Detail Barang</p>
                             </a>
                         </li>
@@ -175,9 +168,11 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-        <?= $this->renderSection('content') ?>
 
+        <?= $this->renderSection('content') ?>
         <?= $this->include('layout/footer') ?>
+    </div>
+    <!-- ./wrapper -->
 </body>
 
 </html>
