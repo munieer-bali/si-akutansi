@@ -16,52 +16,57 @@
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
     <div class="card">
-        <div class="card-header">
-            <a href="<?= base_url('admin/transaksidetail/add') ?>" class="btn btn-primary">Tambah</a>
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="card-title">Daftar Transaksi</h3>
+            <a href="<?= base_url('admin/transaksidetail/add') ?>" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Tambah
+            </a>
         </div>
 
         <!-- Menampilkan session success atau error -->
-        <?php if (session()->getFlashdata('success')) : ?>
-            <div class="alert alert-success alert-dismissible show fade">
-                <div class="alert-body">
-                    <button class="close" data-dismiss="alert">×</button>
-                    <?= session()->getFlashdata('success'); ?>
-                </div>
-            </div>
-        <?php endif; ?>
-
-        <?php if (session()->getFlashdata('error')) : ?>
-            <div class="alert alert-danger alert-dismissible show fade">
-                <div class="alert-body">
-                    <button class="close" data-dismiss="alert">×</button>
-                    <?= session()->getFlashdata('error'); ?>
-                </div>
-            </div>
-        <?php endif; ?>
-        
         <div class="card-body">
+            <?php if (session()->getFlashdata('success')) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?= session()->getFlashdata('success'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
+
+            <?php if (session()->getFlashdata('error')) : ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?= session()->getFlashdata('error'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
             
-            <form method="get" action="<?= base_url('admin/transaksidetail/index') ?>" class="mb-4">
-                <div class="form-group">
+            <!-- Form Filter by Date -->
+            <form method="get" action="<?= base_url('admin/transaksidetail/index') ?>" class="row mb-4">
+                <div class="col-md-5">
                     <label for="tanggal_awal">Tanggal Awal</label>
                     <input type="date" class="form-control" name="tanggal_awal" id="tanggal_awal" required>
                 </div>
-                <div class="form-group">
+                <div class="col-md-5">
                     <label for="tanggal_akhir">Tanggal Akhir</label>
                     <input type="date" class="form-control" name="tanggal_akhir" id="tanggal_akhir" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Filter</button>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100"><i class="fas fa-filter"></i> Filter</button>
+                </div>
             </form>
 
             <!-- Tabel Transaksi Detail -->
             <?php if (!empty($data)) : ?>
                 <div class="table-responsive">
-                    <table id="myTable" class="table table-bordered table-striped">
-                        <thead>
+                    <table id="myTable" class="table table-bordered table-hover table-striped">
+                        <thead class="thead-dark">
                             <tr>
                                 <th>No</th>
                                 <th>Nama Item</th>
@@ -88,7 +93,7 @@
                                     <td><?= $row->quantity ?></td>
                                     <td><?= format_rupiah($row->price_per_item) ?></td>
                                     <td><?= format_rupiah($row->subtotal) ?></td>
-                                    <td class="text-center" style="width: 15%;">
+                                    <td class="text-center">
                                         <a href="<?= base_url('admin/transaksidetail/edit/' . $row->transaksi_detail_id) ?>" class="btn btn-warning btn-sm">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
@@ -102,14 +107,14 @@
                     </table>
                 </div>
 
-                <!-- Menampilkan total keseluruhan pendapatan, laba kotor, dan laba bersih -->
+                <!-- Total Pendapatan, Laba Kotor, dan Laba Bersih -->
                 <div class="mt-4">
                     <h4>Total Pendapatan: <?= isset($total_subtotal) ? format_rupiah($total_subtotal) : format_rupiah(0) ?></h4>
-                    <h4>Laba Kotor      : <?= isset($labaKotor) ? format_rupiah($labaKotor) : format_rupiah(0) ?></h4>
-                    <h4>Laba Bersih     : <?= isset($labaBersih) ? format_rupiah($labaBersih) : format_rupiah(0) ?></h4>
+                    <h4>Laba Kotor: <?= isset($labaKotor) ? format_rupiah($labaKotor) : format_rupiah(0) ?></h4>
+                    <h4>Laba Bersih: <?= isset($labaBersih) ? format_rupiah($labaBersih) : format_rupiah(0) ?></h4>
                 </div>
             <?php else : ?>
-                <p>Tidak ada detail transaksi ditemukan.</p>
+                <p class="text-center">Tidak ada detail transaksi ditemukan.</p>
             <?php endif; ?>
         </div>
     </div>

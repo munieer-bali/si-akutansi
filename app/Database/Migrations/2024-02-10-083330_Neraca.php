@@ -35,6 +35,11 @@ class Neraca extends Migration
                 'type' => 'DECIMAL',
                 'constraint' => '20,2',
             ],
+            'periode' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 7, // Format: YYYY-MM
+                'null'       => false,
+            ],
         ]);
         $this->forge->addForeignKey('id_akun', 'akun', 'id_akun', 'CASCADE', 'CASCADE');
         $this->forge->addKey('id_neraca', true);

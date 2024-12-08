@@ -12,7 +12,7 @@ class NeracaModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_neraca', 'id_akun', 'tanggal', 'total_aset', 'total_kewajiban', 'ekuitas_bersih'];
+    protected $allowedFields    = ['id_neraca', 'id_akun', 'tanggal', 'total_aset', 'total_kewajiban', 'ekuitas_bersih','periode'];
 
     // Dates
     protected $useTimestamps = false;

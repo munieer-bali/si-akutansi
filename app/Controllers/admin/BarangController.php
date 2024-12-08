@@ -47,7 +47,7 @@ class BarangController extends BaseController
         $builder = new BarangModel();
         $data = $builder->getBarang();
         $query = $builder->table('tabel_barang_gudang');
-        $hasil = $query->getWhere(['id_barang' => $id])->getRow();
+        $hasil = $query->getWhere(['id_barang' => $id])->getRow(); 
         $data['edit'] = $hasil;
 
         return view('admin/databarang/edit', $data);
@@ -58,7 +58,7 @@ class BarangController extends BaseController
         $id = $this->request->getVar('id_barang');
         $data = [
             'nama_barang' => $this->request->getPost('nama_barang'),
-            'jumlah_barang' => $this->request->getPost('jumlah_barang'),
+            'jumlah_barang' => $this->request->getPost('jumlah_barang'), 
             'tanggal' => $this->request->getPost('tanggal'),
             'harga_beli' => $this->request->getPost('harga_beli'),
             'harga_jual' => $this->request->getPost('harga_jual'),

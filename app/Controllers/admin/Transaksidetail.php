@@ -77,6 +77,8 @@ class Transaksidetail extends BaseController
                 'kode_pelanggan' => $this->request->getPost('kode_pelanggan'),
                 'quantity' => $quantity,
                 'price_per_item' => $this->request->getPost('price_per_item'),
+                'periode' => date('Y-m', strtotime('periode')),
+                
             ];
 
             // Simpan transaksi detail

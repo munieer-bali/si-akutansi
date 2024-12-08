@@ -23,19 +23,27 @@ class AkunController extends BaseController
 
     public function saveAkun()
     {
-        $model = new AkunModel();
+        $model = new \App\Models\AkunModel();
+
         if ($this->request->getMethod() === 'post') {
+            // Jika 'kode' tidak ada atau kosong, generate otomatis
+            $kode = $this->request->getPost('kode') ?: $model->generateKodeUnik();
+    
+            // Pastikan kode tetap dalam constraint database (10 karakter maksimal)
             $data = [
-                'kode' => $this->request->getPost('kode'),
+                'kode' => substr($kode, 0, 10),
                 'nama' => $this->request->getPost('nama'),
-
             ];
-            $model->insert($data);
-
-            return redirect()->to(base_url('admin/KodeAkun/akun'))->with('success', 'data berhasil disimpan');
-        }
-        // return redirect()->to(base_url('admin/KodeAkun/akun1'))->with('success', 'data berhasil disimpan');
+    
+            if (!$model->save($data)) {
+                // Jika validasi gagal, tampilkan pesan error
+                return redirect()->back()->withInput()->with('errors', $model->errors());
+            }
+    
+            return redirect()->to(base_url('admin/KodeAkun/akun'))->with('success', 'Data berhasil disimpan.');
+        }    
     }
+
     public function editAkun($id)
     {
         $data['activePage'] = 'akun';
@@ -51,12 +59,19 @@ class AkunController extends BaseController
     {
         $model = new AkunModel();
         $id = $this->request->getVar('id_akun');
+
         $data = [
-            'kode' => $this->request->getPost('kode'),
+            // 'kode' => $this->request->getPost('kode'),
             'nama' => $this->request->getPost('nama'),
         ];
-        $model->where('id_akun', $id)->set($data)->update();
-        return redirect()->to('admin/KodeAkun/akun');
+
+        $model->setValidationRule('nama', "required|is_unique[akun.nama,id_akun,{$id}]");
+
+        if (!$model->update($id, $data)) {
+            return redirect()->back()->withInput()->with('errors', $model->errors());
+        }
+
+        return redirect()->to(base_url('admin/KodeAkun/akun'))->with('success', 'Data berhasil diupdate.');
     }
     public function deleteAkun($id)
     {
@@ -67,5 +82,19 @@ class AkunController extends BaseController
         $hasil->delete();
 
         return redirect()->to('admin/KodeAkun/akun');
+    }
+
+    public function searchByKode()
+    {
+        $kode = $this->request->getGet('kode');
+        $model = new AkunModel();
+
+        $akun = $model->where('kode', $kode)->first();
+
+        if (!$akun) {
+            return redirect()->back()->with('error', 'Kode Akun tidak ditemukan.');
+        }
+
+        return view('admin/KodeAkun/detail-akun', ['akun' => $akun]);
     }
 }

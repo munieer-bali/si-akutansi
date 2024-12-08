@@ -54,6 +54,11 @@ class Labarugi extends Migration
                 'constraint' => '20,2',
                 'null' => true,
             ],
+            'periode' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 7, // Format: YYYY-MM
+                'null'       => false,
+            ],
         ]);
         $this->forge->addForeignKey('id_akun', 'akun', 'id_akun', 'CASCADE', 'CASCADE');
         $this->forge->addKey('id_laba', true);

@@ -52,6 +52,7 @@ class LabaController extends BaseController
         $beban_operasional = $this->request->getPost('beban_operasional');
         $pendapatan_lain = $this->request->getPost('pendapatan_lain');
         $beban_lain = $this->request->getPost('beban_lain');
+        $tanggal = $this->request->getPost('periode');
 
         // Hitung total pendapatan
         $total_pendapatan = $pendapatan_usaha + $pendapatan_lain;
@@ -76,6 +77,7 @@ class LabaController extends BaseController
             'beban_lain' => $beban_lain,
             'laba_kotor' => $laba_kotor,
             'laba_bersih' => $laba_bersih,
+            'periode' => date('Y-m', strtotime($tanggal))
 
 
         ]);

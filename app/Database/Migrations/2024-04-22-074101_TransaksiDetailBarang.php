@@ -48,6 +48,13 @@ class TransaksiDetailBarang extends Migration
                 'constraint' => '10,2',
                 'default' => '0.00',
             ],
+            'periode' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 7, // Format: YYYY-MM
+                'null'       => false,
+            ],
+
+            
         ]);
         $this->forge->addPrimaryKey('transaksi_detail_id');
         $this->forge->addForeignKey('item_id', 'item', 'item_id');

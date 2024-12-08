@@ -16,9 +16,8 @@ class KodeAkun extends Migration
                 'auto_increment' => true,
             ],
             'kode' => [
-                'type'       => 'INT',
-                'constraint' => 10,
-                'unsigned'       => true
+                'type'       => 'VARCHAR',
+                'constraint' => 11,
             ],
             'nama' => [
                 'type'       => 'VARCHAR',

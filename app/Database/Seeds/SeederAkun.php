@@ -10,23 +10,23 @@ class SeederAkun extends Seeder
     {
         $data = [
             [
-                'kode' => '1',
+                
                 'nama'    => 'Active',
             ],
             [
-                'kode' => '2',
+               
                 'nama'    => 'kewajiban',
             ],
             [
-                'kode' => '3',
+               
                 'nama'    => 'modal',
             ],
             [
-                'kode' => '4',
+                
                 'nama'    => 'Pendapatan',
             ],
             [
-                'kode' => '5',
+               
                 'nama'    => 'Beban',
             ],
 

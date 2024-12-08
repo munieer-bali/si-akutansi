@@ -22,28 +22,33 @@ class AkunModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    protected $validationRules = [
+        'kode' => 'required|max_length[10]',
+        'nama' => 'required|is_unique[akun.nama]',
+    ];
+    protected $validationMessages = [
+        'kode' => [
+            'is_unique' => 'Kode Akun sudah ada. Masukkan kode yang berbeda.',
+        ],
+        'nama' => [
+            'is_unique' => 'Nama Akun sudah ada. Masukkan nama yang berbeda.',
+        ],
+    ];
+    protected $skipValidation = false;
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+
+    public function generateKodeUnik()
+    {
+        // Ambil kode terakhir di database
+        $lastKode = $this->select('kode')->orderBy('kode', 'DESC')->first();
+
+        // Jika ada kode terakhir, ambil angka di dalamnya
+        $lastNumber = isset($lastKode['kode']) ? intval($lastKode['kode']) : 0;
+
+        // Tambahkan 1 dan format dengan leading zero (maksimal 10 karakter)
+        $newKode = str_pad($lastNumber + 1, 10, '0', STR_PAD_LEFT);
+
+        // Kembalikan kode baru
+        return substr($newKode, -10); // Pastikan tetap dalam panjang maksimal 10
+    }
 }
-
-// function ambilrelasi()
-// {
-//     $builder = $this->db->table('akun');
-//     $builder->select('akun.id_akun, akun.nama'); // Pilih kolom yang diinginkan dari tabel 'akun'
-//     $builder->join('akun', 'akun.id_akun = transaksi.id_akun');
-//     $query = $builder->get();
-//     return $query->getResult();
-// }

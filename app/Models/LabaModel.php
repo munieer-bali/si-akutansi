@@ -12,7 +12,7 @@ class LabaModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_laba', 'id_akun', 'keterangan', 'pendapatan_usaha', 'beban_operasional', 'laba_kotor', 'pendapatan_lain', 'beban_lain', 'laba_bersih'];
+    protected $allowedFields    = ['id_laba', 'id_akun', 'keterangan', 'pendapatan_usaha', 'beban_operasional', 'laba_kotor', 'pendapatan_lain', 'beban_lain', 'laba_bersih','periode'];
 
     function getRelasi()
     {

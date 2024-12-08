@@ -49,6 +49,7 @@ class NeracaController extends BaseController
         $total_kewajiban = $this->request->getPost('total_kewajiban');
 
 
+
         // Menghitung ekuitas bersih
         $ekuitas_bersih = $total_aset - $total_kewajiban;
 
@@ -60,6 +61,7 @@ class NeracaController extends BaseController
             'total_aset' => $total_aset,
             'total_kewajiban' => $total_kewajiban,
             'ekuitas_bersih' => $ekuitas_bersih,
+            'periode' => date('Y-m', strtotime($tanggal))
 
         ]);
 

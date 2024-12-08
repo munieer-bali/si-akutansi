@@ -18,40 +18,39 @@
         </div><!-- /.container-fluid -->
         <div class="card">
             <div class="card-body">
-                <form method="post" action="<?= base_url('admin/jurnal/jurnal') ?>">
+            <form method="post" action="<?= base_url('admin/jurnal/jurnal') ?>" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Akun</label>
-                        <select class="form-control" aria-label="Default select example" name="id_akun">
-                            <?php foreach ($data as $key) : ?>
-
+                        <label for="id_akun">Akun</label>
+                        <select class="form-control" name="id_akun" required>
+                            <?php foreach ($data as $key): ?>
                                 <option value="<?= $key->id_akun ?>"><?= $key->nama ?></option>
-
-
-                            <?php endforeach ?>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">tipe transaksi</label>
-                        <select class="form-control" aria-label="Default select example" name="tipe_transaksi">
-                            <option value="debet">debit</option>
-                            <option value="credit">kredit</option>
+                        <label for="tipe_transaksi">Tipe Transaksi</label>
+                        <select class="form-control" name="tipe_transaksi" required>
+                            <option value="debet">Debet</option>
+                            <option value="credit">Kredit</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">jumlah</label>
-                        <input type="text" class="form-control" name="jumlah" placeholder="input">
+                        <label for="jumlah">Jumlah</label>
+                        <input type="text" class="form-control" name="jumlah" placeholder="Input jumlah" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">tanggal</label>
-                        <input type="Date" class="form-control" name="tanggal" placeholder="Enter nama">
+                        <label for="tanggal">Tanggal</label>
+                        <input type="date" class="form-control" name="tanggal" placeholder="Enter tanggal" required>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i>save</button>
-                        <button type="reset" class="btn btn-secondary"><i class="fas fa-trash"></i>reset</button>
+                        <label for="bukti_pembayaran">Bukti Pembayaran (Opsional)</label>
+                        <input type="file" class="form-control" name="bukti_pembayaran" accept="image/*,application/pdf">
                     </div>
-
-
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save</button>
+                        <button type="reset" class="btn btn-secondary"><i class="fas fa-trash"></i> Reset</button>
+                    </div>
                 </form>
                 <!-- Pesan kesalahan validasi -->
                 <?php if (isset($validation)) : ?>

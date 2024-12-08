@@ -10,13 +10,12 @@ class JurnalModel extends Model
     protected $primaryKey       = 'id_transaksi';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_akun', 'tipe_transaksi', 'jumlah', 'tanggal'];
-
+    protected $allowedFields    = ['id_akun', 'tipe_transaksi', 'jumlah', 'tanggal', 'bukti_pembayaran','periode']; // Menambahkan bukti_pembayaran
 
     public function getJurnalData()
     {
         $builder = $this->db->table('transaksi');
-        $builder->join('akun', 'akun.id_akun = transaksi.id_akun'); 
+        $builder->join('akun', 'akun.id_akun = transaksi.id_akun');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -32,12 +31,10 @@ class JurnalModel extends Model
     // Menghitung saldo akun berdasarkan debit dan kredit
     public function getSaldoAkun()
     {
-        // Mengambil semua data transaksi
         $transaksi = $this->getTransaksi();
         $saldo_akun = []; // Untuk menyimpan saldo tiap akun
         $total_saldo = 0; // Untuk menghitung total saldo seluruh akun
 
-        // Looping setiap transaksi
         foreach ($transaksi as $row) {
             $id_akun = $row['id_akun']; // Mengambil id akun dari transaksi
             $jumlah = $row['jumlah']; // Mengambil jumlah transaksi
@@ -59,10 +56,10 @@ class JurnalModel extends Model
             $total_saldo += $jumlah;
         }
 
-        // Mengembalikan saldo per akun dan total saldo
         return ['saldo_akun' => $saldo_akun, 'total_saldo' => $total_saldo];
     }
 
+    // Mengambil jurnal berdasarkan rentang tanggal
     public function getJurnalDataByTanggal($tanggal_awal, $tanggal_akhir)
     {
         $builder = $this->db->table('transaksi');
@@ -76,4 +73,15 @@ class JurnalModel extends Model
         return $query->getResult();
     }
 
+    // Mengambil detail transaksi spesifik
+    public function getDetailTransaksi($id_transaksi)
+    {
+        // Ambil data transaksi spesifik dengan detail akun
+        return $this->select('transaksi.*, akun.nama as nama_akun')
+            ->join('akun', 'akun.id_akun = transaksi.id_akun')
+            ->where('id_transaksi', $id_transaksi)
+            ->first();
+    }
 }
+
+ 

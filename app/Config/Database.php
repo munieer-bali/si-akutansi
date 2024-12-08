@@ -27,9 +27,9 @@ class Database extends Config
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',
-        'username'     => 'root',
-        'password'     => '',
-        'database'     => 'si-akutansi',
+        'username'     => 'admin',
+        'password'     => 'admin',
+        'database'     => 'si_akutansi',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,

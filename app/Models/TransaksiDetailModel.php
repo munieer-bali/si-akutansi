@@ -8,7 +8,7 @@ class TransaksiDetailModel extends Model
 {
     protected $table = 'transaksi_detail_barang';
     protected $primaryKey = 'transaksi_detail_id';
-    protected $allowedFields = ['item_id', 'transaksi_date', 'kode_pelanggan', 'quantity', 'price_per_item', 'subtotal', 'total_subtotal'];
+    protected $allowedFields = ['item_id', 'transaksi_date', 'kode_pelanggan', 'quantity', 'price_per_item', 'subtotal', 'total_subtotal','periode'];
     protected $returnType = 'array';
 
     public function getAll()
