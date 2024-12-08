@@ -4,7 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<<<<<<< HEAD
     <title>SI-Akuntansi</title>
+=======
+    <title>SI-Akutansi</title>
+>>>>>>> e312064bfe78feb0a0daea7288b32bb9a2bc801d
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
@@ -126,6 +130,7 @@
                                 <p>Jurnal Umum</p>
                             </a>
                         </li>
+                        <!-- Neraca -->
                         <li class="nav-item">
                             <a href="<?= base_url('admin/laporan_keuangan/index') ?>" class="nav-link">
                             <i class="nav-icon fas fa-money-bill-wave"></i>

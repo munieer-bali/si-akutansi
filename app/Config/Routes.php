@@ -38,16 +38,18 @@ $routes->group('admin', ['filter' => 'authFilter'], function($routes) {
     $routes->get('jurnal/edit/(:num)', 'admin\JurnalController::edit/$1');
     $routes->get('jurnal/delete/(:num)', 'admin\JurnalController::delete/$1');
 
-    $routes->post('jurnal/jurnal', 'admin\JurnalController::saveJurnal');
-    $routes->post('jurnal/update', 'admin\JurnalController::update');
-    $routes->get('jurnal/detail/(:num)', 'admin\JurnalController::detail/$1'); 
+$routes->post('admin/jurnal/jurnal', 'admin\JurnalController::saveJurnal');
+$routes->post('admin/jurnal/update', 'admin\JurnalController::update');
 
 
-    // Rute neraca
-    $routes->get('Neraca/neraca', 'admin\NeracaController::viewNeraca');
-    $routes->get('Neraca/addneraca', 'admin\NeracaController::addneraca');
-    $routes->get('Neraca/edit/(:num)', 'admin\NeracaController::edit/$1');
-    $routes->get('Neraca/delete/(:num)', 'admin\NeracaController::delete/$1');
+//buku besar
+// $routes->get('admin/bukubesar/bukubesar', 'admin\bukuController::BukuBesar');
+
+//neraca
+$routes->get('admin/Neraca/neraca', 'admin\NeracaController::viewNeraca');
+$routes->get('admin/Neraca/addneraca', 'admin\NeracaController::addneraca');
+$routes->get('admin/Neraca/edit/(:num)', 'admin\NeracaController::edit/$1');
+$routes->get('admin/Neraca/delete/(:num)', 'admin\NeracaController::delete/$1');
 
     $routes->post('Neraca/neraca', 'admin\NeracaController::saveNeraca');
     $routes->post('Neraca/update', 'admin\NeracaController::update');
@@ -85,10 +87,5 @@ $routes->group('admin', ['filter' => 'authFilter'], function($routes) {
     $routes->get('transaksidetail/edit/(:num)', 'admin\Transaksidetail::edit/$1');
     $routes->get('transaksidetail/delete/(:num)', 'admin\Transaksidetail::delete/$1');
 
-    $routes->post('transaksidetail/index', 'admin\Transaksidetail::save');
-    $routes->post('transaksidetail/update', 'admin\Transaksidetail::update');
-
-    //laporan keuangan 
-    $routes->get('laporan_keuangan/index', 'admin\LaporanKeuanganController::index');
-    $routes->get('laporan_keuangan/cetak', 'admin\LaporanKeuanganController::cetak');
-});
+$routes->post('admin/transaksidetail/index', 'admin\Transaksidetail::save');
+$routes->post('admin/transaksidetail/update', 'admin\Transaksidetail::update');

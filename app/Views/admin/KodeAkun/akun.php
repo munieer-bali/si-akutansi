@@ -23,6 +23,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
+<<<<<<< HEAD
                     <div class="d-flex justify-content-between">
                         <!-- Form Pencarian -->
                         <form action="<?= base_url('admin/KodeAkun/search') ?>" method="get" class="form-inline">
@@ -37,6 +38,11 @@
                             <i class="fas fa-plus"></i> Tambah Data Akuntansi
                         </a>
                     </div>
+=======
+                    <a href="<?= base_url('admin/KodeAkun/tambah-akun') ?>" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Tambah Akun
+                    </a>
+>>>>>>> e312064bfe78feb0a0daea7288b32bb9a2bc801d
                 </div>
 
                 <!-- Flash messages for success and error -->
@@ -65,8 +71,13 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
+<<<<<<< HEAD
                                     <th>Kode</th>
                                     <th>Data Akuntansi</th>
+=======
+                                    <th>Kode Akun</th>
+                                    <th>Nama Akun</th>
+>>>>>>> e312064bfe78feb0a0daea7288b32bb9a2bc801d
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -76,16 +87,27 @@
                                 foreach ($kodeAkun as $key => $nilai) : ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
+<<<<<<< HEAD
                                         <td><?= esc($nilai['kode']) ?></td>
                                         <td><?= esc($nilai['nama']) ?></td>
+=======
+                                        <td><?= $nilai['kode'] ?></td>
+                                        <td><?= $nilai['nama'] ?></td>
+>>>>>>> e312064bfe78feb0a0daea7288b32bb9a2bc801d
                                         <td class="text-center">
                                             <a href="<?= base_url('admin/KodeAkun/edit-akun/' . $nilai['id_akun']) ?>" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-pencil-alt"></i> Edit
                                             </a>
+<<<<<<< HEAD
                                             <a href="<?= base_url('admin/KodeAkun/delete-akun/' . $nilai['id_akun']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus id_akun <?= esc($nilai['id_akun']) ?>?')">
                                                 <i class="fas fa-trash"></i> Delete
                                             </a>
                                             <a href="<?= base_url('admin/KodeAkun/search?kode=' . $nilai['kode']) ?>" class="btn btn-info btn-sm">Detail</a>
+=======
+                                            <a href="<?= base_url('admin/KodeAkun/delete-akun/' . $nilai['id_akun']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus id_akun <?= $nilai['id_akun'] ?>?')">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </a>
+>>>>>>> e312064bfe78feb0a0daea7288b32bb9a2bc801d
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

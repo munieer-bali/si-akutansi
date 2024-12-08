@@ -26,7 +26,7 @@
                 <?= csrf_field() ?>
 
                 <!-- Hidden Input for ID -->
-                <input type="hidden" class="form-control" name="id_barang" value="<?= $edit->id_barang ?>">
+                <input type="hidden" class="form-control" name="id_akun" value="<?= $edit->id_barang ?>">
 
                 <!-- Nama Barang -->
                 <div class="form-group">

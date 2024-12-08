@@ -7,14 +7,29 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Edit Akun</h1>
+                    <h1>Edit Akun</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Edit Akun</li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
+                        <li class="breadcrumb-item active">Edit Akun</li>
                     </ol>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Card for Edit Akun -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="<?= base_url('admin/KodeAkun/update-akun') ?>">
+                        <?= csrf_field() ?>
+                        
+                        <!-- Hidden input for ID Akun -->
         </div>
     </section>
 
